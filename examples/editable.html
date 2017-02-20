@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>An editable code-prettify example</title>
+<script src="../loader/run_prettify.js?autoload=true&amp;skin=sunburst" defer></script>
+</head>
+
+<body>
+<h1>Editable Example</h1>
+<p>
+Unfocus the textarea or click on the button to reload the prettified contents.
+</p>
+<!-- Language hints can be put in XML application directive style comments. -->
+<?prettify lang=scala linenums=false?>
+<pre class="prettyprint" id="code"></pre>
+<textarea id="source" onchange="reloadPre();" placeholder="put your code here" rows="30" cols="120" style="font-family:monospace">
+object Foo {
+  val foo = "foo"
+}
+</textarea>
+<br />
+<button onclick="reloadPre();">Reload pretty code</button>
+<script type="text/javascript">//<![CDATA[
+
+function htmlEscape(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function populatePreFromTextarea() {
+  var source = htmlEscape(document.getElementById("source").value)
+  document.getElementById("code").innerHTML = source;
+}
+
+function reloadPre() {
+  populatePreFromTextarea();
+
+  // forcing the reprint
+  document.getElementById("code").className = "prettyprint"
+  PR.prettyPrint();
+}
+
+(function () {
+  populatePreFromTextarea();
+})();
+//]]>
+</script>
+</body>
+</html>
