@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <title>An editable code-prettify example</title>
+
 <script type="text/javascript" src="../src/run_prettify.js?autoload=true&amp;skin=sunburst"></script>
+<script type="text/javascript" src="../src/lang-ex.js"></script>
+<style type="text/css">
+/* making the interpunction easier to see */
+pre .pun{ color: yellow; }
+</style>
 </head>
 
 <body>
@@ -11,13 +17,53 @@
 <p>
 Unfocus the textarea or click on the button to reload the prettified contents.
 </p>
+<pre style="background-color:black">
+  <span class="str">string</span>
+  <span class="kwd">keyword</span>
+  <span class="com">comment</span>
+  <span class="typ">type</span>
+  <span class="lit">literal</span>
+  <span class="pun">punctuation</span>
+  <span class="pln">plaintext</span>
+  <span class="tag">html tag</span>
+  <span class="atn">attribute name</span>
+  <span class="atv">attribute value</span>
+  <span class="dec">decimal</span>
+</pre>
 <!-- Language hints can be put in XML application directive style comments. -->
-<?prettify lang=scala linenums=false?>
+<?prettify lang=ex linenums=false?>
 <pre class="prettyprint" id="code"></pre>
 <textarea id="source" onchange="reloadPre();" placeholder="put your code here" rows="30" cols="120" style="font-family:monospace">
-object Foo {
-  val foo = "foo"
-}
+defmodule Foo.Bar.Baz do
+  # one-line comment
+
+  use Foo.Bar4.Baz
+  alias Foo.Bar.Baz
+  require Foo.Bar.Baz
+
+  @default_token_size 64_000
+
+  @moduledoc """
+  Multiline moduledoc
+  """
+
+  @spec token(length :: integer) :: String.t
+
+  def token(size \\ @default_token_size), do: random_string(size)
+
+  def other_function(foo, bar) do
+    float = 3.14
+    str = "string with #{float} interpolation"
+    ls = [1 | [2, 3]]
+    map = %{"baz" => "ban"}
+    :erlang.time()
+    case {foo, bar} do
+      {1, 2} ->
+        3
+      _something_else -> :error
+    end
+  end
+end
 </textarea>
 <br />
 <button onclick="reloadPre();">Reload pretty code</button>
