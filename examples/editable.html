@@ -23,7 +23,7 @@ Unfocus the textarea or click on the button to reload the prettified contents.
   <span class="com">comment</span>
   <span class="typ">type</span>
   <span class="lit">literal</span>
-  <span class="pun">punctuation</span>
+  <span class="pun">punctuation</span> <span class="pln">- normally the same colour as plaintext, now yellow for visibility</span>
   <span class="pln">plaintext</span>
   <span class="tag">html tag</span>
   <span class="atn">attribute name</span>
@@ -39,6 +39,7 @@ defmodule Foo.Bar.Baz do
 
   use Foo.Bar4.Baz
   alias Foo.Bar.Baz
+  alias __MODULE__, as: This
   require Foo.Bar.Baz
 
   @default_token_size 64_000
@@ -51,17 +52,34 @@ defmodule Foo.Bar.Baz do
 
   def token(size \\ @default_token_size), do: random_string(size)
 
+  def _not_exported(), do: 0xFF + 0xF_F - 0xff
+
   def other_function(foo, bar) do
     float = 3.14
-    str = "string with #{float} interpolation"
+    float = 1_3.1_4
+    str = "string with #{float} interpolation" &lt;&gt; " some more"
+    mstr = "multiline \"
+    string"
+    charlist = 'some\'chars'
     ls = [1 | [2, 3]]
     map = %{"baz" => "ban"}
+    map = %{foo: :bar, "yes, this compiles": :"also an atom"}
     :erlang.time()
     case {foo, bar} do
       {1, 2} ->
         3
       _something_else -> :error
+      _ -> :"this won't match"
     end
+    # sigils
+    ~r/hello/
+    ~r|hello|
+    ~r"hello"
+    ~r'hello'
+    ~r(hello)
+    ~r[hello]
+    ~r{hello}
+    ~r&lt;hello&gt;
   end
 end
 </textarea>
