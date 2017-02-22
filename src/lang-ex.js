@@ -40,14 +40,12 @@ PR['registerLangHandler'](
          [PR['PR_PUNCTUATION'], /^[!%&()*+,\-;<=>?\[\\\]^{|}~]+/, null,
           '!%&()*+,-;<=>?[\\]^{|}~'],
          // Borrowed from lang-erlang.js:
-         // TODO: add the mid-number underscores (100_000)
          [PR['PR_LITERAL'],
-          /^(?:0o[0-7]+|0x[\da-f]+|\d+(?:\.\d+)?(?:e[+\-]?\d+)?)/i,
+          /^(?:0o[0-7](?:[0-7]|_[0-7])*|0x[\da-f](?:[\da-f]|_[\da-f])*|\d(?:\d|_\d)*(?:\.\d(?:\d|_\d)*)?(?:e[+\-]?\d(?:\d|_\d)*)?)/i,
           null, '0123456789']
         ],
         [
          // atoms - :__a_word or :"colon followed by a string"
-         // TODO keyword list atom keys coloured like atoms
          [PR['PR_LITERAL'], /^:(?:\w+|"(?:[^"\\]|\\.)*"?)/],
          // compile-time information
          [PR['PR_ATTRIB_NAME'], /^(?:__(?:CALLER|ENV|MODULE|DIR)__)/],
@@ -55,6 +53,10 @@ PR['registerLangHandler'](
          [PR['PR_KEYWORD'],
           /^(?:alias|case|catch|defp?|defdelegate|defexception|defimpl|defmacrop?|defmodule|defoverridable|defprotocol|defstruct|do|else|end|for|if|import|raise|require|throw|type|unless|use|yield)\b/],
          [PR['PR_LITERAL'], /^(?:true|false|nil)\b/],
+         // atoms as keyword list keys
+         // NOTE: this doesn't handle the %{"I'm an atom": :foo} case to make
+         // the string detection faster. It is rarely ever used too.
+         [PR['PR_LITERAL'], /^(?:\w+):/],
          // types
          [PR['PR_TYPE'], /^[A-Z]\w*/],
          // TODO: sigils
