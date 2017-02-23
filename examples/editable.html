@@ -52,13 +52,16 @@ defmodule Foo.Bar.Baz do
 
   def token(size \\ @default_token_size), do: random_string(size)
 
-  def _not_exported(), do: 0xFF + 0xF_F - 0xff
+  defp _not_exported(), do: 0xFF + 0xF_F - 0xff
 
   def other_function(foo, bar) do
-    float = 3.14
-    float = 1_3.1_4
-    str = "string with #{float} interpolation" &lt;&gt; " some more"
-    mstr = "multiline \"
+    with float = 3.14,
+      str &lt;- "string without #{float} interpolation" &lt;&gt; " some more",
+    do: :ok
+
+    fnction = fn{_a, b} -> b + 1_3.1_4 end
+    fnction.(1.0e+20)
+    _1mstr = "multiline \"
     string"
     charlist = 'some\'chars'
     ls = [1 | [2, 3]]
@@ -71,14 +74,16 @@ defmodule Foo.Bar.Baz do
       _something_else -> :error
       _ -> :"this won't match"
     end
+    r = 2
+    bitwise_not = ~~~r
     # sigils
-    ~r/hello/
-    ~r|hello|
-    ~r"hello"
-    ~r'hello'
-    ~r(hello)
-    ~r[hello]
-    ~r{hello}
+    ~r/foo/iou # regex sigils are treated as normal ones
+    ~S|we have "quotes" and 'quotes' and| &lt;&gt; " more string"
+    ~x"custom sigil char \"is\" fine too"modifiers
+    ~r'hello'#
+    ~w(he(ll o) #
+    ~w[hell\] #o] #
+    ~w{hello}
     ~r&lt;hello&gt;
   end
 end
