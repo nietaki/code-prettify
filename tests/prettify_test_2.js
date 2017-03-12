@@ -980,12 +980,16 @@ var goldens = {
 '  `END`KWDdef`END`PLN other`END`PUN(`END`PLNfoo`END`PUN,`END`PLN bar`END`PUN)`END`PLN `END`KWDdo`END`PLN\n' +
 '    fun `END`PUN=`END`PLN `END`KWDfn`END`PUN{`END`COM_a`END`PUN,`END`PLN b`END`PUN}`END`PLN `END`PUN-&gt;`END`PLN b `END`PUN+`END`PLN `END`LIT1_3.1_4`END`PLN `END`KWDend`END`PLN\n' +
 '    fun`END`PUN.(`END`LIT1.0e+20`END`PUN)`END`PLN\n' +
-'    `END`COM_str`END`PLN `END`PUN=`END`PLN `END`STR"string without #{inspect(42)} interpolation"`END`PLN `END`PUN&lt;&gt;`END`PLN `END`STR" some more"`END`PLN\n' +
-'    charlist `END`PUN=`END`PLN `END`LIT\'some\\\'chars\'`END`PLN\n' +
+'    `END`COM_str`END`PLN `END`PUN=`END`PLN `END`STR"string without #{inspect(42)} interpolation"`END`PLN `END`PUN&lt;&gt;`END`PLN `END`STR" some more\n' +
+'    with newlines \\\n' +
+'    and newlines"`END`PLN\n' +
+'    charlist `END`PUN=`END`PLN `END`LIT\'some\\\'chars\n' +
+'    with newlines \\\n' +
+'    and newlines\'`END`PLN\n' +
 '    `END`PUN&lt;&lt;`END`PLNx`END`PUN::`END`PLNutf8`END`PUN,`END`PLN `END`COM_y`END`PUN::`END`PLNsize`END`PUN(`END`LIT8`END`PUN),`END`PLN data`END`PUN::`END`PLNbinary`END`PUN&gt;&gt;`END`PLN `END`PUN=`END`PLN `END`STR"fooo"`END`PLN\n' +
 '    ls `END`PUN=`END`PLN `END`PUN[`END`LIT1`END`PLN `END`PUN|`END`PLN `END`PUN[`END`LIT2`END`PUN,`END`PLN `END`LIT3`END`PUN]]`END`PLN\n' +
 '    map `END`PUN=`END`PLN `END`PUN%{`END`STR"baz"`END`PLN `END`PUN=&gt;`END`PLN `END`STR"ban"`END`PUN}`END`PLN\n' +
-'    map `END`PUN=`END`PLN `END`PUN%{`END`LITfoo:`END`PLN `END`LIT:bar`END`PUN,`END`PLN `END`STR"yes, this compiles"`END`PUN:`END`PLN `END`LIT:"also an atom"`END`PUN}`END`PLN\n' +
+'    map `END`PUN=`END`PLN `END`PUN%{`END`LITfoo:`END`PLN `END`LIT:bar`END`PUN,`END`PLN `END`LIT"yes, this compiles":`END`PLN `END`LIT:"also an atom"`END`PUN}`END`PLN\n' +
 '    `END`LIT:erlang`END`PUN.`END`PLNtime`END`PUN()`END`PLN\n' +
 '    `END`KWDcase`END`PLN `END`PUN{`END`PLNfoo`END`PUN,`END`PLN bar`END`PUN}`END`PLN `END`KWDdo`END`PLN\n' +
 '      `END`PUN{`END`LIT1`END`PUN,`END`PLN `END`LIT2`END`PUN}`END`PLN `END`PUN-&gt;`END`PLN `END`LIT3`END`PLN\n' +
